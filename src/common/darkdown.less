@@ -1,0 +1,192 @@
+
+
+.content_markdown{
+  
+
+
+button {
+  cursor: pointer;
+}
+a {
+  position: relative;
+  text-decoration: none;
+  color: #324057;
+  cursor: pointer;
+}
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #475669;
+  transform: scaleX(0);
+  transition: .3s ease-in-out;
+}
+a:hover {
+  color: #20A0FF !important;
+}
+@keyframes loading {
+from {
+    transform: rotate(0);
+}
+to {
+    transform: rotate(360deg);
+}
+}
+.markdown-text {
+  
+  border-radius: 0 0 4px 4px;
+  padding:0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  background-color: white;
+  word-wrap: break-word;
+}
+.markdown-text li {
+    list-style: none;
+}
+.markdown-text img {
+    //自己修改 
+    max-width: 100%;
+}
+.markdown-text li, .markdown-text p {
+    text-indent: 1em;
+    line-height: 28px;
+}
+.markdown-text h1, .markdown-text h2, .markdown-text h3, .markdown-text h4, .markdown-text h5, .markdown-text h6 {
+    line-height: 48px;
+}
+.markdown-text h1 {
+    font-size: 150%;
+}
+.markdown-text h2 {
+    font-size: 140%;
+}
+.markdown-text h3 {
+    font-size: 130%;
+}
+.markdown-text h4 {
+    font-size: 120%;
+}
+.markdown-text h5 {
+    font-size: 110%;
+}
+.markdown-text table {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    border-collapse: collapse;
+}
+.markdown-text table th {
+      border: none;
+      background-color: #009688;
+      color: white;
+}
+.markdown-text table tr:nth-of-type(odd) {
+      background-color: #E0E0E0;
+      border: none;
+}
+.markdown-text table tr:nth-of-type(even) {
+      background-color: #EFEBE9;
+      border: none;
+}
+.markdown-text table td {
+      max-width: 110px;
+      padding: 10px 4px;
+      font-size: 80%;
+      overflow: auto;
+      text-align: center;
+}
+.markdown-text code {
+    overflow: auto;
+    background: #f4f4f4;
+    padding: 0 5px;
+    border: 1px solid #eee;
+}
+.markdown-text pre {
+    background: #f4f4f4;
+    overflow: auto;
+    padding: 5px 10px;
+}
+.markdown-text pre > code {
+    line-height: 20px;
+    border: none;
+}
+.markdown-text blockquote {
+    border-left: 8px solid #D3DCE6;
+    color: #475669;
+    padding: 10px 10px 10px 20px;
+    background: #EFF2F7;
+    margin: 0;
+}
+.markdown-text blockquote p {
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 0;
+}
+@media screen and (min-width: 760px) {
+.markdown-text {
+    padding: 10px 50px;
+}
+}
+#star {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.slide-fade-enter-active {
+  transition: all .6s ease;
+}
+.slide-fade-leave-active {
+  transition: all .5s ease;
+}
+.slide-fade-enter, .slide-fade-leave-active {
+  transform: translateX(60px);
+  opacity: 0;
+}
+.slide-left-enter-active {
+  transition: all .3s ease;
+}
+.slide-left-leave-active {
+  transition: all .2s ease-out;
+}
+.slide-left-enter, .slide-left-leave-active {
+  transform: translateX(-150px);
+  opacity: 0;
+}
+.slide-top-enter-active {
+  transition: all .5s ease;
+}
+.slide-top-leave-active {
+  transition: all .2s ease-out;
+}
+.slide-top-enter, .slide-top-leave-active {
+  transform: translateY(-5px);
+  opacity: 0;
+}
+.fadeIn-enter-active, .fadeIn-leave-active {
+  transition: opacity .5s ease;
+}
+.fadeIn-enter, .fadeIn-leave-to {
+  opacity: 0;
+}
+.slide-enter-active, .slide-leave-active {
+  transition: top .5s ease, opacity .5s ease;
+}
+.slide-enter, .slide-leave-to {
+  top: 0;
+  opacity: 0;
+}
+.pulldown-enter-active, .pulldown-leave-active {
+  transition: transform .5s ease;
+  transform-origin: top left;
+}
+.pulldown-enter, .pulldown-leave-to {
+  transform: scaleY(0);
+}
+
+}

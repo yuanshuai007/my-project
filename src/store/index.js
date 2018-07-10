@@ -1,0 +1,235 @@
+
+import vuex from 'vuex'
+import vue from 'vue'
+vue.use(vuex);
+import user from './user/user.js'
+var root={
+  state:{
+    topic:[],
+	  req_data:true,
+    type:''
+  },
+  mutations:{
+    r_mu_data(state,res){
+      state.topic=res;
+    },
+    //拼接数据
+    /*mu_r_add_data(state,data){
+      state
+    }*/
+  },
+  actions:{
+    r_data({commit},data){
+      commit('r_mu_data',data);
+    }
+  }
+}
+var topic={
+  state:{
+    //临时保存要编辑话题时的内容
+    content:'',
+    detail:{
+	  author:{
+	    loginname:''
+	  }
+	},
+	replyTemp:{
+		loginname:'',
+        replyId:'',
+        //ʹ@loginname only show once
+		input_num:0
+	}
+  },
+  mutations:{
+    topic_mu_setter(state,detail){
+	  state.detail=detail;
+	  //console.log('detail','---',state.detail);
+	},
+	mu_topic_reply_info(state,obj){
+	  state.detail.replies.forEach((val,index)=>{
+	    if(val.id==obj.replyId){
+		  if(obj.action=='up'){
+		    val.ups.push('temp');
+		  }else if(obj.action=='down'){
+			
+		    val.ups.pop();
+		  }
+		}
+	  })
+	},
+	mu_topic_replyTemp(state,temp){
+
+	  state.replyTemp=temp; 
+	  //console.log('temp','---',state.replyTemp.loginname);
+	},
+	mu_topic_addReplyContent(state,content){
+	  state.detail.replies.push({content:content})
+	},
+    mu_topic_save_content(state,data){
+      state.content=data;
+    }
+  },
+  actions:{
+    topic_setter({commit},arg){
+	  commit('topic_mu_setter',arg);
+	},
+	topic_reply_info({commit},obj){
+	  commit('mu_topic_reply_info',obj);
+	},
+	topic_replyTemp({commit},obj){
+	  commit('mu_topic_replyTemp',obj);
+	},
+	topic_addReplyContent({commit},content){
+	  commit('mu_topic_addReplyContent',content);
+	},
+  topic_save_content({commit},content){
+	  commit('mu_topic_save_content',content);
+	}
+  }
+}
+var loading={
+  state:{
+    isLoading:false
+  },
+  mutations:{
+    mu_changeLoading(state,option){
+	  state.isLoading=option;
+	}
+  },
+  actions:{
+    changeLoading({commit},option){
+	  commit('mu_changeLoading',option)
+	}
+  }
+}
+var login={
+  state:{
+    isLogin:false,
+    isLoginInterface:false,
+      info:{
+      accessToken:''
+    },
+    userInfo:{
+      //用户id
+      id:'',
+      loginname:''
+    },
+    //登录时的重定向
+    login_redirect:false,
+    to:{}
+  },
+  mutations:{
+    mu_changeLogin(state,option){
+      state.isLogin=option;
+      //console.log('isLogin','---',state.isLogin);
+    },
+    mu_login_userInfo(state,info){
+      //console.log('存入登录获取的信息');
+      state.userInfo=info;
+    },
+    mu_login_interface(state,info){
+      state.isLoginInterface=info;
+    },
+    mu_login_info(state,obj){
+      //
+      //console.log('login_info','---',type);
+      for(var i in obj){
+        var key=i;
+      }
+      for(var index in state.info){
+        if(index==key){
+        state.info[key]=obj[key];
+        //console.log('login_info','---',obj);
+        }
+      }
+      //console.log('info','--',state.info);
+    },
+    mu_login_redirect(state,data){
+      state.login_redirect=data;
+    },
+    mu_login_to(state,data){
+      state.login_to=data;
+    }
+  },
+  actions:{
+    changeLogin({commit},option){
+      commit('mu_changeLogin',option)
+    },
+    login_userInfo({commit},info){
+      commit('mu_login_userInfo',info); 
+    },
+    login_interface({commit},info){
+      commit('mu_login_interface',info); 
+    },
+    login_info({commit},obj){
+      commit('mu_login_info',obj); 
+    },
+    login_redirect({commit},data){
+      commit('mu_login_redirect',data); 
+    },
+    login_to({commit},data){
+      commit('mu_login_to',data); 
+    }
+  }
+}
+var create_topic={
+  state:{
+    info:{
+	  tab:'请选择',
+	  title:''
+	},
+	//��ʾ�ظ������ύ
+	is_reply_topic:false
+  },
+  mutations:{
+	//1.obj<=info
+    mu_create_topic_info(state,obj){
+	  var ary=Object.keys(obj);
+	  ary.forEach((val,index)=>{
+	    state.info[val]=obj[val]
+	  });
+	  console.log('mu-info','---',state.info); 
+	},
+    mu_is_reply_topic(state,bool){
+	  
+	  state.is_reply_topic=bool;
+	  //console.log('is_reply_topic--mu','---',state.is_reply_topic);
+	}
+  },
+  actions:{
+    create_topic_info({commit},obj){
+	  //console.log('action-info','---',state.info);
+	  commit('mu_create_topic_info',obj);
+	},
+	is_reply_topic({commit},bool){
+	  commit('mu_is_reply_topic',bool);
+	}
+  }
+}
+var message={
+  state:{
+    msg:'',
+	is_show:false
+  },
+  mutations:{
+    mu_message_msg(state,msg){
+	  state.msg=msg;
+	  //console.log('isLogin','---',state.isLogin);
+	},
+	mu_message_show(state,msg){
+	  state.is_show=msg;
+	  //console.log('isLogin','---',state.isLogin);
+	}
+  },
+  actions:{
+    message_msg({commit},option){
+	  commit('mu_message_msg',option)
+	},
+    message_show({commit},option){
+	  commit('mu_message_show',option)
+	}
+  }
+}
+export default new vuex.Store({
+  modules:{root,topic,loading,login,create_topic,message,user}
+});

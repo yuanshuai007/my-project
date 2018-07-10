@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+ <script>
+   var p1=new Promise((resolve,inject)=>{
+     setTimeout(()=>{
+	   resolve('ppp');
+	 },1000);
+   });
+   p1.then(val=>{
+     console.log(val);
+   });
+ </script>
+ </body>
+</html>
+function async fun(){
+         axios({
+            url:'https://cnodejs.org/api/v1/topic/5aae1cc8f5dfc27d7ad98909'
+           }).then(res=>{
+            console.log('this','---',this);
+            this.topic[2].last_reply_img='jjjjj';
+        
+           });
+      };
+
+
+	  /*axios({
+        method:'get',
+	url:'https://cnodejs.org/api/v1/topics',
+	params:{
+	  limit:limit
+	}
+      }).then(res=>{
